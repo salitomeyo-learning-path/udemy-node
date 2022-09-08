@@ -1,4 +1,5 @@
 import colors from 'colors';
+import { readDB, saveDB } from './helpers/fileController.js';
 import { inquirerMenu, pauseMenu, readInput } from './helpers/inquirer.js';
 import { Task } from './models/task.js';
 import { Tasks } from './models/tasks.js';
@@ -10,6 +11,9 @@ const main = async() => {
     let opt = '';
     const tasks = new Tasks();
 
+    const tasksDB = readDB();
+    if ( tasksDB ) tasks.createTasksFromList( tasksDB );
+
     do {
         // opt = await mostrarMenu();
         opt = await inquirerMenu();
@@ -20,12 +24,14 @@ const main = async() => {
                 tasks.createTask( description );
                 break;
             case '2':
-                console.log(tasks);
+                console.log( tasks.getList );
                 break;  
             case '1':
                 break; 
             
         }
+
+        saveDB( tasks.getList );
 
         if(opt !== '0') await pauseMenu();
     } while (opt !== '0');
