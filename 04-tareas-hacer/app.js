@@ -1,5 +1,5 @@
 import { readDB, saveDB } from './helpers/fileController.js';
-import { confirmDelete, inquirerMenu, listTasksDelete, pauseMenu, readInput } from './helpers/inquirer.js';
+import { confirmDelete, inquirerMenu, listTasksChecklist, listTasksDelete, pauseMenu, readInput } from './helpers/inquirer.js';
 import { Tasks } from './models/tasks.js';
 // const { mostrarMenu, pause } = require('./helpers/mensajes');
 
@@ -31,6 +31,8 @@ const main = async() => {
                 tasks.listPending();
                 break;
             case '5':
+                const ids = await listTasksChecklist( tasks.getList );
+                tasks.completeTasks(ids);
                 break;
             case '6':
                 const id = await listTasksDelete( tasks.getList );

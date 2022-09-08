@@ -75,6 +75,23 @@ class Tasks {
             }
         })
     }
+
+    completeTasks( ids = [] ) {
+        ids.forEach( id => {
+            const task = this._list[id];
+
+            if ( !task.completedDate ) {
+                task.completedDate = new Date().toISOString();
+            }
+        }) 
+        
+        Object.keys(this._list).forEach( id => {
+            if( !ids.includes(id) ) {
+                const task = this._list[id];
+                task.completedDate = null;
+            }
+        })
+    }
 }
 
 export {
