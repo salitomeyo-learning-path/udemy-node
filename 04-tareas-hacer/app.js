@@ -1,7 +1,5 @@
-import colors from 'colors';
 import { readDB, saveDB } from './helpers/fileController.js';
-import { inquirerMenu, pauseMenu, readInput } from './helpers/inquirer.js';
-import { Task } from './models/task.js';
+import { confirmDelete, inquirerMenu, listTasksDelete, pauseMenu, readInput } from './helpers/inquirer.js';
 import { Tasks } from './models/tasks.js';
 // const { mostrarMenu, pause } = require('./helpers/mensajes');
 
@@ -31,7 +29,18 @@ const main = async() => {
                 break; 
             case '4':
                 tasks.listPending();
-            
+                break;
+            case '5':
+                break;
+            case '6':
+                const id = await listTasksDelete( tasks.getList );
+
+                if ( id === '0' ) break;
+
+                const confirmation = confirmDelete('Are you sure you want to delete?');
+                if (confirmation) tasks.deleteTask( id );
+                break;
+                
         }
 
         saveDB( tasks.getList );
