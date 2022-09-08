@@ -24,10 +24,13 @@ const main = async() => {
                 tasks.createTask( description );
                 break;
             case '2':
-                console.log( tasks.getList );
+                tasks.printToConsole();
                 break;  
-            case '1':
+            case '3':
+                tasks.listCompleted();
                 break; 
+            case '4':
+                tasks.listPending();
             
         }
 

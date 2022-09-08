@@ -27,6 +27,48 @@ class Tasks {
         const task = new Task( description );
         this._list[task.id] = task;
     }
+
+    printToConsole() {
+        const list = this.getList
+
+        list.forEach( ({ description, completedDate }, i ) => {
+            const index = ( completedDate )
+                                ? `${i+1}.`.green
+                                : `${i+1}.`.yellow
+            const state = ( completedDate )
+                                ? 'completed'.green
+                                : 'pending'.yellow
+
+            console.log( `${index} ${description} :: ${state}`)
+        })
+    }
+
+    listCompleted() {
+        const list = this.getList;
+
+        let counter = 1;
+        list.forEach( ({ description, completedDate } ) => {
+            if ( completedDate ) {
+                const index = `${counter}.`.green;
+                console.log( `${index} ${description}`);
+                counter++;
+            }
+        })
+    }
+
+    listPending() {
+        const list = this.getList;
+
+        
+        let counter = 1;
+        list.forEach( ({ description, completedDate } ) => {
+            if ( !completedDate ) {
+                const index = `${counter}.`.yellow;
+                console.log( `${index} ${description}`);
+                counter++;
+            }
+        })
+    }
 }
 
 export {
