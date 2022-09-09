@@ -9,6 +9,7 @@
   "author": "Salome Aristizabal Giraldo <salitomeyo16@gmail.com> (https://github.com/salitomeyo)",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.2",
     "express": "^4.18.1"
   }
