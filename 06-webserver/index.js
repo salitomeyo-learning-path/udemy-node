@@ -7,7 +7,10 @@ app.set('view engine', 'hbs');
 app.use( express.static('public') );
 
 app.get('/', (req, res) => {
-    res.render('home');
+    res.render('home', {
+        name: 'Salome Aristizabal',
+        title: 'Node Udemy Course'
+    });
 })
 
 app.get('/hello-world', (req, res) => {
