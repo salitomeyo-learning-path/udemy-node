@@ -1,20 +1,29 @@
 const { response } = require('express');
 
 const userGet = (req, res = response) => {
+    const query = req.query;
+    
     res.json({
-        msg: 'get API - controller'
+        msg: 'get API - controller',
+        query
     });
 }
 
 const userPut = (req, res = response) => {
+    const { id } = req.params;
+    
     res.status(201).json({
-        msg: 'put API - controller'
+        msg: 'put API - controller',
+        id
     });
 }
 
 const userPost = (req, res = response) => {
+    const body = req.body;
+    
     res.json({
-        msg: 'post API - controller'
+        msg: 'post API - controller',
+        body
     });
 }
 
