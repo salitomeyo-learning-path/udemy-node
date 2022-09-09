@@ -1,0 +1,18 @@
+{
+  "name": "weather-console-app",
+  "version": "1.0.0",
+  "description": "Weather app usign feolocation and openweatherMaps",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Salome Aristizabal Giraldo <salitomeyo16@gmail.com> (https://github.com/salitomeyo)",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.2",
+    "inquirer": "^9.1.1"
+  }
+}
