@@ -1,5 +1,6 @@
 import * as dotenv from 'dotenv';
-import { inquirerMenu, pauseMenu, readInput } from "./helpers/inquirer.js";
+import { printCityToConsole } from './helpers/consoleLogs.js';
+import { inquirerMenu, listPlaces, pauseMenu, readInput } from "./helpers/inquirer.js";
 import { Searches } from "./models/Searches.js";
 
 dotenv.config()
@@ -13,8 +14,13 @@ const main = async() => {
 
         switch (opt) {
             case 1:
-                const city = await readInput('Type the name of a city');
-                searches.getCity(city);
+                const cityName = await readInput('Type the name of a city');
+                const cities = await searches.getCity(cityName);
+                const cityId = await listPlaces(cities);
+                const city = cities.find( c => c.id === cityId );
+
+                const weather = await searches.getWeather( city );
+                printCityToConsole( city, weather );
                 break;
             case 2:
                 break;

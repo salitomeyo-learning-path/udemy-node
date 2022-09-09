@@ -71,14 +71,15 @@ const readInput = async( message ) => {
     return description;
 }
 
-const listTasksDelete = async( tasks = [] ) => {
-    const choices = tasks.map( (task, i) => {
+const listPlaces = async( places = [] ) => {
+    // console.log(places)
+    const choices = places.map( (place, i) => {
         
         const index = `${ i + 1 }`.cyan;
         
         return {
-            value: task.id,
-            name: `${ index } ${ task.description } `,
+            value: place.id,
+            name: `${ index } ${ place.name } `,
         }
     })
 
@@ -90,15 +91,15 @@ const listTasksDelete = async( tasks = [] ) => {
     const deleteMenu = [
         {
             type: 'list',
-            name:'option',
-            message: 'Which task would you like to eliminate?',
+            name:'idCity',
+            message: 'Please select a place: ',
             choices
         }
     ]
 
-    const { option } = await inquirer.prompt(deleteMenu);
+    const { idCity } = await inquirer.prompt(deleteMenu);
 
-    return option;
+    return idCity;
 }
 
 const confirmDelete = async( message ) => {
@@ -146,7 +147,7 @@ export{
     inquirerMenu,
     pauseMenu,
     readInput,
-    listTasksDelete,
+    listPlaces,
     confirmDelete,
     listTasksChecklist
 }
