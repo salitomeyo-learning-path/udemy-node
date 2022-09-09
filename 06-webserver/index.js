@@ -5,11 +5,19 @@ const port = 8080;
 app.use( express.static('public') );
 
 app.get('/', (req, res) => {
-  res.send('This is the home reques')
+    res.sendFile(__dirname + '/public/index.html')
 })
 
 app.get('/hello-world', (req, res) => {
     res.send('this is the Hello World')
+})
+
+app.get('/elements', (req, res) => {
+    res.sendFile(__dirname + '/public/elements.html')
+})
+
+app.get('/generic', (req, res) => {
+    res.sendFile(__dirname + '/public/generic.html')
 })
 
 app.get('*', (req, res) => {
