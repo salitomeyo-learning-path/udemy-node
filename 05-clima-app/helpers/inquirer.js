@@ -15,7 +15,7 @@ const menuOpts = [
             },
             {
                 value: 2,
-                name: `${ '2.'.cyan } Historial`,
+                name: `${ '2.'.cyan } History`,
             },
             {
                 value: 0,

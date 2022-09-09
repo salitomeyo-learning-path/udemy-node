@@ -1,10 +1,11 @@
+import { readDB, saveDB } from "../helpers/fileController.js";
 import { create, get } from "../helpers/httpRequests.js";
 
 export class Searches {
-    historial = [];
+    history = [];
 
     constructor() {
-
+        this.history = readDB()
     }
 
     get paramsMapbox() {
@@ -35,6 +36,15 @@ export class Searches {
         }
     }
 
+    get capitalizedHistory() {
+        return this.history.map( place => {
+            let words = place.split(' ');
+            words = words.map( word => word[0].toUpperCase() + word.substring(1) );
+
+            return words.join(' ')
+        })
+    }
+
     async getWeather( city = [] ) {
         try {
             const instance = create({
@@ -62,6 +72,16 @@ export class Searches {
         }
     }
 
+    addHistory( place = '' ) {
+        if( this.history.includes( place.toLocaleLowerCase() )){
+            return;
+        }
+
+        this.history = this.history.splice(0, 5);
+        
+        this.history.unshift( place.toLocaleLowerCase() );
+        saveDB( this.history );
+    }
 
 
 }
